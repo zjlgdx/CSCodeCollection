@@ -1,0 +1,5 @@
+Requirement:
+You are implementing a method in an ASP.NET application that includes the following requirements.
+Store the number of active bugs in the cache. The value should remain in the cache when there are calls
+more often than every 15 seconds. The value should be removed from the cache after 60 seconds. You
+need to add code to meet the requirements. Which code segment should you add?
