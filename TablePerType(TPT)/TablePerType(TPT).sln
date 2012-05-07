@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablePerType(TPT)", "TablePerType(TPT)\TablePerType(TPT).csproj", "{745F6900-C644-4904-8CC0-54A8B2DDC1F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{745F6900-C644-4904-8CC0-54A8B2DDC1F9}.Debug|x86.ActiveCfg = Debug|x86
+		{745F6900-C644-4904-8CC0-54A8B2DDC1F9}.Debug|x86.Build.0 = Debug|x86
+		{745F6900-C644-4904-8CC0-54A8B2DDC1F9}.Release|x86.ActiveCfg = Release|x86
+		{745F6900-C644-4904-8CC0-54A8B2DDC1F9}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

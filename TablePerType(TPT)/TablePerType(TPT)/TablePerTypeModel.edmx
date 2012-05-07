@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VehicleDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="VehicleDBModelStoreContainer">
+          <EntitySet Name="Boat" EntityType="VehicleDBModel.Store.Boat" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cars" EntityType="VehicleDBModel.Store.Cars" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Vehicles" EntityType="VehicleDBModel.Store.Vehicles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Boat_Vehicles" Association="VehicleDBModel.Store.FK_Boat_Vehicles">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="Boat" EntitySet="Boat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Vehicles" Association="VehicleDBModel.Store.FK_Cars_Vehicles">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Boat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PropSize" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TireSize" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vehicles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Vin" Type="char" Nullable="false" MaxLength="10" />
+          <Property Name="Make" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Model" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Year" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Boat_Vehicles">
+          <End Role="Vehicles" Type="VehicleDBModel.Store.Vehicles" Multiplicity="1" />
+          <End Role="Boat" Type="VehicleDBModel.Store.Boat" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boat">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Vehicles">
+          <End Role="Vehicles" Type="VehicleDBModel.Store.Vehicles" Multiplicity="1" />
+          <End Role="Cars" Type="VehicleDBModel.Store.Cars" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VehicleDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="VehicleDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Vehicles" EntityType="VehicleDBModel.Vehicle" />
+        </EntityContainer>
+        <EntityType Name="Boat" BaseType="VehicleDBModel.Vehicle">
+          <Property Name="PropSize" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Car" BaseType="VehicleDBModel.Vehicle">
+          <Property Name="TireSize" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vin" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
+          <Property Name="Make" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VehicleDBModelStoreContainer" CdmEntityContainer="VehicleDBEntities">
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="IsTypeOf(VehicleDBModel.Vehicle)">
+              <MappingFragment StoreEntitySet="Vehicles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Vin" ColumnName="Vin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(VehicleDBModel.Boat)">
+              <MappingFragment StoreEntitySet="Boat">
+                <ScalarProperty Name="PropSize" ColumnName="PropSize" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(VehicleDBModel.Car)">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="TireSize" ColumnName="TireSize" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="TablePerTypeModel">
+        <EntityTypeShape EntityType="VehicleDBModel.Boat" Width="1.5" PointX="3" PointY="1" Height="1.211080729166667" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleDBModel.Car" Width="1.5" PointX="3" PointY="3.375" Height="1.2110807291666665" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleDBModel.Vehicle" Width="1.5" PointX="0.75" PointY="1.75" Height="2.3648893229166661" IsExpanded="true" />
+        <InheritanceConnector EntityType="VehicleDBModel.Boat" >
+          <ConnectorPoint PointX="2.25" PointY="1.9805403645833335" />
+          <ConnectorPoint PointX="3" PointY="1.9805403645833335" />
+        </InheritanceConnector>
+        <InheritanceConnector EntityType="VehicleDBModel.Car" >
+          <ConnectorPoint PointX="2.25" PointY="3.5526432291666667" />
+          <ConnectorPoint PointX="3" PointY="3.5526432291666667" />
+        </InheritanceConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
