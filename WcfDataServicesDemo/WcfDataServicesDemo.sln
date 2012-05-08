@@ -3,16 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfDataServicesDemo", "WcfDataServicesDemo\WcfDataServicesDemo.csproj", "{9BBF52C6-F211-43DC-9E98-607D01580C65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfClient", "WpfClient\WpfClient.csproj", "{C260AEA7-19AF-4413-AB09-6245B4735917}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9BBF52C6-F211-43DC-9E98-607D01580C65}.Release|x86.ActiveCfg = Release|Any CPU
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Debug|x86.ActiveCfg = Debug|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Debug|x86.Build.0 = Debug|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Release|Any CPU.ActiveCfg = Release|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Release|Mixed Platforms.Build.0 = Release|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Release|x86.ActiveCfg = Release|x86
+		{C260AEA7-19AF-4413-AB09-6245B4735917}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
