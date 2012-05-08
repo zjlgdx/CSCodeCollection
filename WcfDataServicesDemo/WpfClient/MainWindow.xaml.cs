@@ -34,5 +34,11 @@ namespace WpfClient
             var source = new DataServiceCollection<Customer>(db.Customers);
             dg.ItemsSource = source;
         }
+
+        private void saveToDatabase(object sender, RoutedEventArgs e)
+        {
+            db.SaveChanges();
+            MessageBox.Show("Saved");
+        } 
     }
 }

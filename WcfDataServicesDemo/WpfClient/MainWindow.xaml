@@ -10,7 +10,7 @@
         <Menu>
             <MenuItem Header="Lesson 2">
                 <MenuItem Header="Get Customers" Click="getCustomers" />
-                <MenuItem Header="Save"/>
+                <MenuItem Header="Save" Click="saveToDatabase"/>
             </MenuItem>
         </Menu>
         <DataGrid AutoGenerateColumns="True" Grid.Row="1" Name="dg"  />
