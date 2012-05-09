@@ -1,0 +1,17 @@
+private void mnuHash_Click(object sender, RoutedEventArgs e)
+{
+   var data = "The quick brown fox jumped over the lazy dog.";
+   var bytes = new UnicodeEncoding().GetBytes(data);
+ var sha = new SHA256Managed();
+   var hash = sha.ComputeHash(bytes);
+   MessageBox.Show(ToHexString(hash));
+}
+public string ToHexString(byte[] bytes)
+{
+   var hex = new StringBuilder();
+   foreach (byte b in bytes)
+   {
+      hex.AppendFormat("{0:x2}", b);
+   }
+   return hex.ToString();
+}
