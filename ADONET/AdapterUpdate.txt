@@ -1,0 +1,38 @@
+/// <summary>
+    /// Saving Changes to the Database Using the Update Method
+    /// </summary>
+    public class AdapterUpdate2
+    {
+        private static void AdapterUpdate()
+        {
+            var nw = ConfigurationManager.ConnectionStrings["nw"];
+            var connection = new SqlConnection();
+            connection.ConnectionString = nw.ConnectionString;
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM Customers";
+            var da = new SqlDataAdapter(cmd);
+            var nwSet = new DataSet("nw");
+            var bldr = new SqlCommandBuilder(da);
+            da.Fill(nwSet, "Customers");
+
+            //Modify existing row 
+            var customersTable = nwSet.Tables["Customers"];
+            var updRow = customersTable.Select("CustomerID='WOLZA'")[0];
+            updRow["CompanyName"] = "New Wolza Company";
+
+            //Add new row 
+            customersTable.Rows.Add(
+               "AAAAA", "Five A Company");
+
+            //Delete a row, note that you cannot delete a  
+            //customer who has orders 
+            var delRow = customersTable.Select("CustomerID='PARIS'")[0];
+            delRow.Delete();
+
+            //send changes to database 
+            da.Update(nwSet, "Customers");
+
+            Console.WriteLine("Update Complete");
+        }
+    }
