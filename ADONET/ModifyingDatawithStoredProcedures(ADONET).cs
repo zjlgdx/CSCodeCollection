@@ -32,6 +32,7 @@ namespace DbProviderFactoryDemo
                 adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
 
                 // Create a parameter for the ReturnValue.
+                // the parameter name you can use any words you like.
                 SqlParameter parameter = adapter.InsertCommand.Parameters.Add(
                   "@RowCount", SqlDbType.Int);
                 parameter.Direction = ParameterDirection.ReturnValue;
