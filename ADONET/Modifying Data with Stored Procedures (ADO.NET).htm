@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="ctl00_Head1"><link rel="canonical" href="http://msdn.microsoft.com/en-us/library/59x02y99.aspx" /><title>
+	
+  Modifying Data with Stored Procedures (ADO.NET)
+
+</title>
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/59x02y99(d=lightweight,l=en-us,v=vs.100).aspx" />
+
+<meta name="NormalizedUrl" content="http://msdn.microsoft.com/en-us/library/59x02y99(d=lightweight,l=en-us,v=vs.100).aspx" />
+
+<meta name="DCSext.ProductFamily" content="LIB_DG" />
+
+<meta name="DCSext.Product" content="P_BPUE" />
+
+<meta name="DCSext.Title" content="Modifying Data with Stored Procedures (ADO.NET)" />
+
+<meta name="VotingContextUrl" content="http://msdn.microsoft.com/en-us/library/59x02y99(d=lightweight,l=en-us,v=vs.100).aspx" />
+
+<meta name="MN" content="BE2F4F66-6:56:30 PM" />
+
+<meta name="Search.ShortId" content="59x02y99" />
+
+<meta name="Ms.Locale" content="en-us" />
+<link rel="stylesheet" type="text/css" href="http://i3.msdn.microsoft.com/Combined.css?resources=0:LibraryView,0:Msdn_ImageSprite,0:MSDN.Header,1:FeedbackCounter,0:CodeSnippet,1:Feedback,0:Footer;/Areas/Brand/Content:0,/Areas/Epx/Shared/Content:1&amp;hashKey=633911AE9E1365C4DC0DD67C0882034B" xmlns="http://www.w3.org/1999/xhtml" /><link rel="stylesheet" type="text/css" href="http://i3.msdn.microsoft.com/areas/brand/content/printview.css" media="print" title="printonly" /><link rel="alternate" media="print" href="http://msdn.microsoft.com/en-us/library/59x02y99(d=printer).aspx" /></head>
+<body>
+    
+        
+        
+  <div class="header">
+    
+
+<table border="0" cellpadding="0" cellspacing="0" class="headerBar cl_lightweight_topnav_slice">
+		<tr>
+			<td class="leftSection cl_lightweight_header_leftSection_wave leftSectionImageClusterOverride">
+        <div class="tabContainer">
+          <a href="http://msdn.microsoft.com/en-us/default.aspx" title="Home" class=" headerTab">Home</a>
+          <a href="http://msdn.microsoft.com/en-us/library/default.aspx" title="Library" class="headerTabSelected cl_lightweight_selected_tab_repeatX ">Library</a>
+          <a href="http://msdn.microsoft.com/en-us/bb188199.aspx" title="Learn" class=" headerTab">Learn</a>
+          <a href="http://msdn.microsoft.com/en-us/aa570309.aspx" title="Downloads" class=" headerTab">Downloads</a>
+          <a href="http://msdn.microsoft.com/en-us/hh361695.aspx" title="Support" class=" headerTab">Support</a>
+          <a href="http://msdn.microsoft.com/en-us/aa497440.aspx" title="Community" class=" headerTab">Community</a>
+          
+        </div>
+      </td>
+			<td class="rightSection cl_lightweight_header_rightSection_wave rightSectionImageClusterOverride">
+        <div class="tabContainer">
+            
+            <a href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=11&amp;ct=1336614990&amp;rver=6.0.5276.0&amp;wp=MCLBI&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=http%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2f59x02y99.aspx&amp;lc=1033&amp;id=254354&amp;mkt=en-US" title="Sign in" rel="nofollow">Sign in </a>
+            <span class="pipe">|</span>
+            <a href="http://msdn.microsoft.com/en-us/library/preferences/locale/?returnurl=%252fen-us%252flibrary%252f59x02y99.aspx" title="United States - English" rel="nofollow">United States - English </a>
+            <span class="pipe">|</span>
+            <a class="dispinline clip15x15" href="http://msdn.microsoft.com/en-us/library/preferences/experience/?returnurl=%252fen-us%252flibrary%252f59x02y99.aspx" title="Preferences" rel="nofollow"><img class="head_gear" src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            <span class="pipe">|</span>
+            <a id="exportPrintLink" class="dispinline clip30x15 moveToDown" href="/en-us/library/59x02y99(d=printer).aspx" title="Print/Export"><img class="head_print_noarrow" src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            
+            <div id="exportPrintLinkArrowDiv" class="exportPrintLinkArrow">
+            <a id="exportPrintLinkArrow" class="dispinline clip30x15 moveToDown" href="javascript:void(0);" title="Print/Export"><img class="head_print_arrow" src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            </div>
+            
+        </div>
+			</td>
+	</tr>
+</table>
+
+  </div>
+  <div class="contentPlaceHolder">
+    
+    
+  <div class="navigation" id="Navigation" style="display:none;padding-bottom:96px;">
+    <div class="searchcontainer">
+      
+<form id="SearchForm" action="http://social.msdn.microsoft.com/search/en-us" method="get" style="margin: 0; padding: 0;" onsubmit="return checkSearchBox()">
+<div class="searchBoxContainer" style="">
+  <table class="searchBox" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td class="searchTextBoxTd">
+        <input id="SearchInput" type="text" maxlength="200" class="searchTextBox" name="query" />
+        
+      </td>
+      <td class="searchButtonTd">
+          <input type="image" src="http://i.msdn.microsoft.com/Areas/Brand/Content/search_icon.gif" style="position: relative;" title="Search " />
+      </td>
+    </tr>
+  </table>
+</div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    if (!MTPS) var MTPS = {};
+    if (!MTPS.Watermarks) MTPS.Watermarks = {};
+    MTPS.Watermarks.SearchInput = {
+        "control": "SearchInput",
+        "defaultValue": "Search MSDN with Bing",
+        "defaultCSS": "searchTextBox",
+        "focusCSS": "searchTextBoxTrue"
+    };
+    function checkSearchBox() {
+        if (document.getElementById("SearchInput").value == MTPS.Watermarks.SearchInput.defaultValue) {
+            document.getElementById("SearchInput").value = "";
+        }
+    }
+ //]]>
+</script>
+
+
+    </div>
+    <div class="navcontainer">
+      
+<div class="nav">
+    
+    <div id="tocnav">
+        
+        <div class="toclevel0 ancestry">
+            
+            <div class="clip5x9 nav_root">
+                <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_bullet" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ms123401.aspx" id="ms310241_MSDN.10_en-us" title="MSDN Library">MSDN Library</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ff361664(v=vs.110).aspx" id="aa139615_MSDN.10_en-us" title=".NET Development">.NET Development</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/w0x726c2.aspx" id="dd429910_VS.100_en-us" title=".NET Framework 4">.NET Framework 4</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/190bkk9s.aspx" id="dd429984_VS.100_en-us" title=".NET Framework Core Development">.NET Framework Core Development</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/951h6we4.aspx" id="ee414146_VS.100_en-us" title="Data Access and Modeling">Data Access and Modeling</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/e80y5yhx.aspx" id="ms308558_VS.100_en-us" title="ADO.NET">ADO.NET</a>
+            </div>
+            
+            <div class="clip13x9 nav_arrows">
+                <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ms254937.aspx" id="ms308586_VS.100_en-us" title="Retrieving and Modifying Data in ADO.NET">Retrieving and Modifying Data in ADO.NET</a>
+            </div>
+            
+        </div>
+        
+        <div class="toclevel1 children" style="border-bottom: 1px solid #bbbbbb;">
+            
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a data-tochassubtree="true" href="/en-us/library/32c5dh3b.aspx" id="bb400661_VS.100_en-us" title="Connecting to a Data Source (ADO.NET)">Connecting to a Data Source (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a data-tochassubtree="true" href="/en-us/library/ms254978.aspx" id="ms308587_VS.100_en-us" title="Connection Strings (ADO.NET)">Connection Strings (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a data-tochassubtree="true" href="/en-us/library/bb399543.aspx" id="cc704056_VS.100_en-us" title="Connection Pooling (ADO.NET)">Connection Pooling (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a data-tochassubtree="true" href="/en-us/library/ms254953.aspx" id="ms308588_VS.100_en-us" title="Commands and Parameters (ADO.NET)">Commands and Parameters (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a data-tochassubtree="true" href="/en-us/library/ms254931.aspx" id="ms308589_VS.100_en-us" title="DataAdapters and DataReaders (ADO.NET)">DataAdapters and DataReaders (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a data-tochassubtree="true" href="/en-us/library/777e5ebh.aspx" id="ms308590_VS.100_en-us" title="Transactions and Concurrency (ADO.NET)">Transactions and Concurrency (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/ks9f57t0.aspx" title="Retrieving Identity or Autonumber Values (ADO.NET)">Retrieving Identity or Autonumber Values (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/87z0hy49.aspx" title="Retrieving Large Data (ADO.NET)">Retrieving Large Data (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div class="toclevel1 current">
+                    <a href="/en-us/library/59x02y99.aspx" title="Modifying Data with Stored Procedures (ADO.NET)">Modifying Data with Stored Procedures (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a data-tochassubtree="true" href="/en-us/library/kcax58fh.aspx" id="cc704063_VS.100_en-us" title="Retrieving Database Schema Information (ADO.NET)">Retrieving Database Schema Information (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a data-tochassubtree="true" href="/en-us/library/wda6c36e.aspx" id="cc704065_VS.100_en-us" title="DbProviderFactories (ADO.NET)">DbProviderFactories (ADO.NET)</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/ms172144.aspx" title="Data Tracing in ADO.NET">Data Tracing in ADO.NET</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/ms254503.aspx" title="Performance Counters (ADO.NET)">Performance Counters (ADO.NET)</a>
+                </div>
+                
+        </div>
+        
+    </div>
+    <img src="http://i.msdn.microsoft.com/Areas/Global/Content/clear.gif" alt="Separator" class="communityContentNavigationSeparator cl_lt_cc_line_top" />
+    
+</div>
+
+<script type="text/javascript"> 
+  //<![CDATA[
+  if (!MTPS) var MTPS = {};
+  MTPS.TopicNodes= {
+  
+            "_last": ''
+    };
+  //]]>
+</script>
+
+    </div>
+    
+  </div>
+  <div id="tocResizeContainer" style="visibility:hidden">
+  <a href="#" class="tocResize" id="TocResize" style="left:0px">
+    <img id="ResizeImageIncrease" class="cl_nav_resize_open" src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" title="Expand" alt="Expand" />
+      <img id="ResizeImageReset" class="cl_nav_resize_close" src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" style="display:none" title="Minimize" alt="Minimize" />
+  </a>
+  </div>
+  <div class="content">
+    
+    
+
+<div class="clip117x31 logo">
+  <a href="http://msdn.microsoft.com/en-us/default.aspx">
+    <img src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="msdn_body_logo" alt="MSDN" title="MSDN" />
+  </a>
+</div>
+
+    <div class="topicContainer">
+        
+            <div id="FeedbackCounterContainer">
+                
+
+
+
+<div id="ratingCounterSeperator" class="cl_lw_vs_seperator" style="visibility:hidden"></div>
+<div id="ratingCounter">
+    <span id="rcA" class="ratingText">
+        1 out of 2 rated this helpful <a id="rateThisTopic" href="#feedback" title="Rate this topic">- Rate this topic</a>
+        
+    </span>
+</div>
+
+            </div>
+        
+<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
+  <h1 class="title">Modifying Data with Stored Procedures (ADO.NET)</h1>
+  <div class="lw_vs">
+    <div id="curversion">
+      <strong>
+            .NET Framework 4</strong>
+    </div>
+    <div id="versionclick" style="visibility:hidden">
+      <div id="vsseperator" class="cl_lw_vs_seperator"></div>
+      <div id="versionclick_c1"></div>
+      <div id="versionclick_c2">
+        <div class="">
+          <a id="vsLink" href="javascript:;">
+                    Other Versions
+                </a>
+        </div>
+        <div class="cl_vs_arrow clip10x10">
+          <img class="cl_lw_vs_arrow" id="vsArrow" alt="" src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" />
+        </div>
+      </div>
+      <div id="versionclick_c3"></div>
+    </div>
+    <ul id="vsPanel">
+      <li>
+        <a href="/en-us/library/59x02y99(v=vs.110).aspx" title="">.NET Framework 4.5</a>
+      </li>
+      <li>
+        <a href="/en-us/library/59x02y99(v=vs.90).aspx" title="">Visual Studio 2008</a>
+      </li>
+      <li>
+        <a href="/en-us/library/59x02y99(v=vs.80).aspx" title="">Visual Studio 2005</a>
+      </li>
+      <li>
+        <a href="/en-us/library/59x02y99(v=vs.71).aspx" title="">.NET Framework 1.1</a>
+      </li>
+      <li>
+        <a href="/en-us/library/59x02y99(v=vs.90).aspx" title="">.NET Framework 3.5</a>
+      </li>
+      <li>
+        <a href="/en-us/library/59x02y99(v=vs.80).aspx" title="">.NET Framework 2.0</a>
+      </li>
+    </ul>
+  </div>
+  <div style="clear:both;"></div>
+  
+  <div id="mainSection">
+    <div id="mainBody">
+      <p>
+        
+      </p> <div class="introduction"><p>Stored procedures can accept data as input parameters and can return data as output parameters, result sets, or return values. The sample below illustrates how ADO.NET sends and receives input parameters, output parameters, and return values. The example inserts a new record into a table where the primary key column is an identity column in a SQL Server database. </p><div class="alert"><table><tr><th><img id="alert_note" alt="Note" src="http://i.msdn.microsoft.com/dynimg/IC101471.gif" title="Note" xmlns="" /><strong>Note</strong></th></tr><tr><td><p>If you are using SQL Server stored procedures to edit or delete data using a <span><a href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldataadapter.aspx">SqlDataAdapter</a></span>, make sure that you do not use SET NOCOUNT ON in the stored procedure definition. This causes the rows affected count returned to be zero, which the <span><span class="input">DataAdapter</span></span> interprets as a concurrency conflict. In this event, a <span><a href="http://msdn.microsoft.com/en-us/library/system.data.dbconcurrencyexception.aspx">DBConcurrencyException</a></span> will be thrown.</p></td></tr></table></div></div><div xmlns=""><script type="text/javascript">if (!MTPS) var MTPS = {};if (!MTPS.LocalizedStrings) MTPS.LocalizedStrings = {}; 
+              MTPS.LocalizedStrings.ExpandButtonTooltip = 'Expand'; 
+              MTPS.LocalizedStrings.CollapseButtonTooltip = 'Collapse';</script><div class="LW_CollapsibleArea_TitleDiv"><div><a href="javascript:void(0)" class="LW_CollapsibleArea_TitleAhref" title="Collapse"><img src="http://i.msdn.microsoft.com/Areas/Global/Content/clear.gif" class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img" /><span class="LW_CollapsibleArea_Title">Example</span></a><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div></div><div class="sectionblock"><a id="sectionToggle0" xmlns="http://www.w3.org/1999/xhtml">
+  
+</a>
+<p xmlns="http://www.w3.org/1999/xhtml">The sample uses the following stored procedure to insert a new category into the <strong>Northwind</strong> <strong>Categories</strong> table. The stored procedure takes the value in the <strong>CategoryName</strong> column as an input parameter and uses the SCOPE_IDENTITY() function to retrieve the new value of the identity field, <strong>CategoryID</strong>, and return it in an output parameter. The RETURN statement uses the @@ROWCOUNT function to return the number of rows inserted.</p>
+
+<div class="codeSnippetContainer" xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" title="Copy to clipboard." href="javascript:CodeSnippet_CopyCode('CodeSnippetContainerCode_8f231fe1-54c9-4fbe-ab35-499c98ff1904');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_8f231fe1-54c9-4fbe-ab35-499c98ff1904" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>
+CREATE PROCEDURE dbo.InsertCategory
+  @CategoryName nvarchar(15),
+  @Identity int OUT
+AS
+INSERT INTO Categories (CategoryName) VALUES(@CategoryName)
+SET @Identity = SCOPE_IDENTITY()
+RETURN @@ROWCOUNT
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+<p xmlns="http://www.w3.org/1999/xhtml">The following code example uses the <span class="code">InsertCategory</span> stored procedure shown above as the source for the <span><a href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldataadapter.insertcommand.aspx">InsertCommand</a></span> of the <span><a href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldataadapter.aspx">SqlDataAdapter</a></span>. The <span class="code">@Identity</span> output parameter will be reflected in the <span><a href="http://msdn.microsoft.com/en-us/library/system.data.dataset.aspx">DataSet</a></span> after the record has been inserted into the database when the <span><span class="input">Update</span></span> method of the <span><a href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldataadapter.aspx">SqlDataAdapter</a></span> is called. The code also retrieves the return value.</p><div class="alert" xmlns="http://www.w3.org/1999/xhtml"><table><tr><th><img id="alert_note" alt="Note" src="http://i.msdn.microsoft.com/dynimg/IC101471.gif" title="Note" xmlns="" /><strong>Note</strong></th></tr><tr><td><p>When using the <span><a href="http://msdn.microsoft.com/en-us/library/system.data.oledb.oledbdataadapter.aspx">OleDbDataAdapter</a></span>, you must specify parameters with a <span><a href="http://msdn.microsoft.com/en-us/library/system.data.parameterdirection.aspx">ParameterDirection</a></span> of <strong>ReturnValue</strong> before the other parameters.</p></td></tr></table></div><div id="snippetGroup" xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="codeSnippetContainer" xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTab codeSnippetContainerTabActive codeSnippetContainerTabFirst" dir="ltr"><a>C#</a></div><div class="codeSnippetContainerTab codeSnippetContainerTabLast" dir="ltr"><a href="javascript: CodeSnippet_SetLanguage('CodeSnippetContainerLang', 'Programming', 'Visual Basic');">VB</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" title="Copy to clipboard." href="javascript:CodeSnippet_CopyCode('CodeSnippetContainerCode_a6a9703f-8a54-4596-8800-282ed37f2a5b');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_a6a9703f-8a54-4596-8800-282ed37f2a5b" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>
+
+<span style="color:Blue;">private</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> ReturnIdentity(<span style="color:Blue;">string</span> connectionString)
+{
+    <span style="color:Blue;">using</span> (SqlConnection connection =
+               <span style="color:Blue;">new</span> SqlConnection(connectionString))
+    {
+        <span style="color:Green;">// Create a SqlDataAdapter based on a SELECT query.</span>
+        SqlDataAdapter adapter = <span style="color:Blue;">new</span> SqlDataAdapter(
+          <span style="color:#A31515;">"SELECT CategoryID, CategoryName FROM dbo.Categories"</span>,
+          connection);
+
+        <span style="color:Green;">// Create a SqlCommand to execute the stored procedure.</span>
+        adapter.InsertCommand = <span style="color:Blue;">new</span> SqlCommand(<span style="color:#A31515;">"InsertCategory"</span>, connection);
+        adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
+
+        <span style="color:Green;">// Create a parameter for the ReturnValue.</span>
+        SqlParameter parameter = adapter.InsertCommand.Parameters.Add(
+          <span style="color:#A31515;">"@RowCount"</span>, SqlDbType.Int);
+        parameter.Direction = ParameterDirection.ReturnValue;
+
+        <span style="color:Green;">// Create an input parameter for the CategoryName.</span>
+        <span style="color:Green;">// You do not need to specify direction for input parameters.</span>
+        adapter.InsertCommand.Parameters.Add(
+          <span style="color:#A31515;">"@CategoryName"</span>, SqlDbType.NChar, 15, <span style="color:#A31515;">"CategoryName"</span>);
+
+        <span style="color:Green;">// Create an output parameter for the new identity value.</span>
+        parameter = adapter.InsertCommand.Parameters.Add(
+          <span style="color:#A31515;">"@Identity"</span>, SqlDbType.Int, 0, <span style="color:#A31515;">"CategoryID"</span>);
+        parameter.Direction = ParameterDirection.Output;
+
+        <span style="color:Green;">// Create a DataTable and fill it.</span>
+        DataTable categories = <span style="color:Blue;">new</span> DataTable();
+        adapter.Fill(categories);
+
+        <span style="color:Green;">// Add a new row.</span>
+        DataRow categoryRow = categories.NewRow();
+        categoryRow[<span style="color:#A31515;">"CategoryName"</span>] = <span style="color:#A31515;">"New Beverages"</span>;
+        categories.Rows.Add(categoryRow);
+
+        <span style="color:Green;">// Update the database.</span>
+        adapter.Update(categories);
+
+        <span style="color:Green;">// Retrieve the ReturnValue.</span>
+        Int32 rowCount =
+            (Int32)adapter.InsertCommand.Parameters[<span style="color:#A31515;">"@RowCount"</span>].Value;
+
+        Console.WriteLine(<span style="color:#A31515;">"ReturnValue: {0}"</span>, rowCount.ToString());
+        Console.WriteLine(<span style="color:#A31515;">"All Rows:"</span>);
+        <span style="color:Blue;">foreach</span> (DataRow row <span style="color:Blue;">in</span> categories.Rows)
+        {
+            {
+                Console.WriteLine(<span style="color:#A31515;">"  {0}: {1}"</span>, row[0], row[1]);
+            }
+        }
+    }
+}
+
+
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+</div></div></div><div xmlns=""><div class="LW_CollapsibleArea_TitleDiv"><div><a href="javascript:void(0)" class="LW_CollapsibleArea_TitleAhref" title="Collapse"><img src="http://i.msdn.microsoft.com/Areas/Global/Content/clear.gif" class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img" /><span class="LW_CollapsibleArea_Title">See Also</span></a><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div></div><div class="sectionblock"><a id="seeAlsoToggle" xmlns="http://www.w3.org/1999/xhtml">
+  
+</a>
+<h4 class="subHeading" xmlns="http://www.w3.org/1999/xhtml">Concepts</h4>
+<div class="seeAlsoStyle" xmlns="http://www.w3.org/1999/xhtml">
+  <span>
+    <a href="http://msdn.microsoft.com/en-us/library/tyy0sz6b.aspx">Executing a Command (ADO.NET)</a>
+  </span>
+</div>
+<h4 class="subHeading" xmlns="http://www.w3.org/1999/xhtml">Other Resources</h4>
+<div class="seeAlsoStyle" xmlns="http://www.w3.org/1999/xhtml">
+  <span>
+    <a href="http://msdn.microsoft.com/en-us/library/ms254937.aspx">Retrieving and Modifying Data in ADO.NET</a>
+  </span>
+</div>
+<div class="seeAlsoStyle" xmlns="http://www.w3.org/1999/xhtml">
+  <span>
+    <a href="http://msdn.microsoft.com/en-us/library/ms254931.aspx">DataAdapters and DataReaders (ADO.NET)</a>
+  </span>
+</div>
+<div class="seeAlsoStyle" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="http://go.microsoft.com/fwlink/?LinkId=217917">ADO.NET Managed Providers and DataSet Developer Center</a>
+</div></div></div></div>
+  </div>
+</div>
+
+        
+
+
+
+<div id="contentFeedback">
+    <form method="post" action="/en-us/library/feedback/add/59x02y99.aspx">
+        <input name="__RequestVerificationToken" type="hidden" value="105c+0fcYVek3vZFkJqfQvD6G+OjFKmogYKS1qv/SqNkDxcht2nMal6TcEv+l4cYb6e+a8Ts+XjpANwbe9tCG9jlersX6op6YXut2aIX7zDaDNgO2wEeDVFhNkrG5Wnu3P5oyA==" />
+    <div id="contentFeedbackContainer">
+        <div class="FeedbackTitleContainer">
+            <a name="feedback"></a>
+        Did you find this helpful?
+            <input id="rdIsUsefulYes" name="rdIsUseful" type="radio" value="1" onclick="toggleContentFeedback('Yes');" /><label for="rdIsUsefulYes">Yes</label>
+            <input id="rdIsUsefulNo" name="rdIsUseful" type="radio" value="0" onclick="toggleContentFeedback('No');" /><label for="rdIsUsefulNo">No</label>
+        
+        </div>
+        
+            <div id="contentFeedbackQAContainer">
+                
+                    <div id="feedbackListNoContainer" class="FeedbackListContainer">
+                        
+                            <div>
+                                <input id="chkbxNo201" name="chkbxNo" type="checkbox" value="201" />
+                                <label for="chkbxNo201">Not accurate</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo202" name="chkbxNo" type="checkbox" value="202" />
+                                <label for="chkbxNo202">Not enough depth</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo203" name="chkbxNo" type="checkbox" value="203" />
+                                <label for="chkbxNo203">Need more code examples</label>
+                            </div>
+                        
+                    </div>
+                
+                <div class="FeedbackTellUsMoreContainer">
+                    <textarea id="feedbackText" name="feedbackText" class="TellUsMoreTextBoxSearchLoaded" onfocus="WatermarkFocus(this, 'Tell us more...', 'TellUsMoreTextBoxSearch')" onblur="WatermarkBlur(this, 'Tell us more...', 'TellUsMoreTextBoxSearchLoaded')" onkeydown="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeyup="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)">Tell us more...</textarea>
+                </div>
+                <span class="counter">(<span id="feedbackTextCounter">1500</span> characters remaining)</span>
+                <input type="hidden" id="returnUrl" name="returnUrl" value="http://msdn.microsoft.com/en-us/library/59x02y99.aspx" />
+                <input type="submit" id="submit" value="Submit" title="Click to Submit Feedback" onclick="WatermarkOnSubmit(document.getElementById('feedbackText'), 'Tell us more...', 'TellUsMoreTextBoxSearch')" />
+                <div style="clear: both;"></div>
+            </div>  
+        
+    </div>
+    </form>
+</div>
+
+    </div>
+    
+  </div>
+        
+  </div>
+  <div class="footer">
+    
+
+<div id="footer" class="msdn footerContainer cl_footer_slice">
+  <div class="footerLogoContainer">
+    <div class="footerContent">
+    <div class="copyright">
+      © 2012 Microsoft. All rights reserved.</div>
+    <div class="footerLogo cl_footer_logo"></div>
+    <a href="/cc300389.aspx">Terms of Use</a><span class="pipe"> | </span>
+    <a href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx">Trademarks</a><span class="pipe"> | </span>
+    <a href="http://www.microsoft.com/info/privacy.mspx">Privacy Statement</a>
+    <span class="pipe">| </span>
+    <span class="FeedbacklinkDisabled" id="FeedbacklinkDisabled">Site Feedback</span>
+    <a id="Feedbacklink" title="Site Feedback" class="FeedbackLink" href="http://social.msdn.microsoft.com/Forums/en-US/libraryfeedback/threads">
+      Site Feedback
+        <span class="FeedbackButton clip20x21" id="FeedbackButton">
+          <img id="feedBackImg" class="cl_footer_feedback_icon" src="http://i.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="Site Feedback" />
+        </span>
+      </a>
+    
+  <div id="FeedbackContainer" class="FeedbackContainer">
+    <form id="siteFeedbackForm" method="post" action="/en-us/library/feedback/add/59x02y99.aspx">
+        <input name="__RequestVerificationToken" type="hidden" value="Xh5ObzRk6QYcm+fMmPLA90XCoc/Le8cazlqPt1GkWISbEihqvB+zB5no8mPoXm2kWTwjw0mV9kKr40dm3c8QYDOhfEKbxUf0+0lu/megY7Q0Y2oK4OTooSpRiUgtYu5i89FNpQ==" />
+    <div class="FeedbackTitleContainer">
+        <div class="FeedbackTitle">
+            Site Feedback</div>
+        <div class="FeedbackCancel">
+            <a href="javascript:;" onclick="document.getElementById('FeedbackContainer').style.display = 'none';">x</a>
+            </div>
+    </div>
+    <div class="FeedbackData">
+        <div class="FeedbackInfoText">
+            Tell us about your experience...
+        </div>
+        <div class="QuestionText">
+            Did the page load quickly?
+        </div>
+        <div class="AnswerText">
+            
+            <span>
+                Yes<span>
+                    <input id="searchBox" name="searchBox" type="radio" value="1" /></span></span>
+            
+            <span>
+                No<span>
+                    <input id="searchBox" name="searchBox" type="radio" value="0" /></span></span>
+            
+        </div>
+        <div class="QuestionText">
+            Do you like the page design?
+        </div>
+        <div class="AnswerText">
+            
+            <span>
+                Yes<span>
+                    <input id="tabbedCode" name="tabbedCode" type="radio" value="1" /></span></span>
+            
+            <span>
+                No<span>
+                    <input id="tabbedCode" name="tabbedCode" type="radio" value="0" /></span></span>
+            
+        </div>
+        <div class="QuestionText">
+            Tell us more
+        </div>
+        <div class="FeedbackTextAreaContainer">
+            <textarea id="feedbackText" data-maxlength="4000" name="feedbackText" cols="25" rows="5" class="FeedbackTextArea"></textarea>
+            
+            <textarea id="feedbackDescription" name="feedbackDescription" cols="25" rows="10" style="display:none;">Enter description here.</textarea>
+            <input type="hidden" id="feedbackPriority" name="feedbackPriority" value="" />
+            <input type="hidden" id="feedbackSourceUrl" name="feedbackSourceUrl" value="" />
+            <input type="hidden" id="ClientIP" name="ClientIP" value="" />
+            <input type="hidden" id="ClientOS" name="ClientOS" value="" />
+            <input type="hidden" id="ClientBrowser" name="ClientBrowser" value="" />
+            <input type="hidden" id="ClientTime" name="ClientTime" value="" />
+            <input type="hidden" id="ClientTimeZone" name="ClientTimeZone" value="" />
+            
+            
+        </div>
+        <div>
+            <input id="siteFeedbackSubmit" type="submit" value="Send" class="FeedbackSubmit" onclick="submitSiteFeedback('-1');" />
+        </div>
+    </div>
+    <input type="hidden" id="returnUrl" name="returnUrl" value="http://msdn.microsoft.com/en-us/library/59x02y99.aspx" />
+    
+    
+    <input type="hidden" id="feedBackVersion" name="feedBackVersion" value="1" />
+    
+  </form> 
+</div>
+
+    </div>
+  </div>
+</div>
+
+  </div>
+
+    
+        <div class="MetricsContainer">
+            
+    <div class="WebtrendsContainer">
+      
+
+<script type="text/javascript">
+//<![CDATA[
+  var literalNormalizedUrl = '/en-us/library/59x02y99(d=lightweight,l=en-us,v=vs.100).aspx';
+  var wt_nvr_ru = 'WT_NVR_RU';
+  var wt_fpcdom = '.microsoft.com';
+  var wt_domlist = 'msdn.microsoft.com';
+  var wt_pathlist = '';
+  var wt_paramlist = 'DCSext.mtps_devcenter';
+  var wt_siteid = 'MSDN';
+  var gDomain = 'm.webtrends.com';
+  var gDcsId = 'dcsmgru7m99k7mqmgrhudo0k8_8c6m';
+  var gFpc = 'WT_FPC';
+  if (document.cookie.indexOf(gFpc + "=") == -1) {
+    var wtidJs = document.createElement("script");
+    wtidJs.src = "//" + gDomain + "/" + gDcsId + "/wtid.js";
+    document.getElementsByTagName("head")[0].appendChild(wtidJs);
+  }
+  var detectedLocale = 'en-us';
+  var wtsp = 'msdnlib_dotnet';
+  var gTrackEvents = '0';
+/*]]>*/
+</script>
+<noscript><div><img alt="DCSIMG" id="Img1" width="1" height="1" src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;WT.js=No" /></div></noscript>
+
+
+    </div>
+    
+    <div class="OmnitureContainer">
+      
+
+
+
+<script type="text/javascript">
+  var omni_guid = 'f6f21103-6071-4277-86ba-2b51ff4112d5'; 
+</script>
+
+
+
+<noscript>
+    <a href="http://www.omniture.com" title="Web Analytics">
+        <img src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" /></a>
+</noscript>
+
+
+    </div>
+    
+        </div>
+        
+<script type="text/javascript">
+    //<![CDATA[
+    var brokerJs = document.createElement("script");
+    brokerJs.src = "//js.microsoft.com/library/svy/sto/broker.js";
+    document.getElementsByTagName("head")[0].appendChild(brokerJs);
+    /*]]>*/
+</script>
+
+<![CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]>
+<script type="text/javascript" src="http://i2.msdn.microsoft.com/Combined.js?resources=0:Library,1:FeedbackCounter,2:CodeSnippet,1:Feedback,3:webtrendsscript,4:omni_rsid_MSDN;/Areas/Brand/Content:0,/Areas/Epx/Shared/Content:1,/Areas/Global/Content:2,/Areas/Global/Content/Webtrends/resources:3,/Areas/Global/Content/Omniture/resources/MSDN:4&amp;hashKey=A12B36F060B10BC9293E85C7CB53B9B8" xmlns="http://www.w3.org/1999/xhtml"></script></body>
+</html>
